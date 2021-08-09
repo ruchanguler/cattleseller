@@ -1,14 +1,14 @@
 ## Cattle Seller
-## Setup
+## Kurulum
 
-Ensure you have python 3.6+ installed.
+Bilgisayarınızda python yüklü olduğundan emin olun .
 
-```bash
-pip install -r requirements.txt
-```
+İndirdikten sonra proje dizini içerisinde :
+`pip install -r requirements.txt`
 
-## Running the Server
+`python manage.py makemigrations`
 
-```bash
-python manage.py runserver
-```
+`python manage.py migrate`
+
+`python manage.py runserver`
+
