@@ -1,3 +1,5 @@
+import io
+from django.http import response
 from django.shortcuts import render,HttpResponse,redirect
 from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
@@ -5,6 +7,9 @@ from .models import *
 from .forms import *
 from .filters import CattleFilter
 from .tables import CattleTable
+import xlsxwriter
+from io import StringIO,BytesIO
+import xlwt
 # Create your views here.
 class CattleListView(SingleTableMixin,FilterView):
     model = Cattle
@@ -18,8 +23,20 @@ class CattleListView(SingleTableMixin,FilterView):
         context['form'] = AddCattle
         return context
 def send(request):
+    
     if request.method == "POST":
-        Cattle.objects.create(buyer=request.POST.get("buyer"),salesorder=request.POST.get("salesorder"),cattleid=request.POST.get("cattleid"),slaughterorder=request.POST.get("slaughterorder"))
+        form = AddCattle(request.POST)
+        if form.is_valid():
+            if Cattle.objects.filter(buyer=request.POST.get('buyer')).exists():
+                return redirect('/')
+                
+
+            else:
+                form.save()
+                return redirect('/')
+                
+             
+            
         return redirect("/")
     return HttpResponse("")
 def delete(request,pk):
@@ -38,3 +55,34 @@ def update(request,pk):
         
     
     return render(request,"update.html",{"form":form})
+def excel(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="kurbansırası.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Users Data')
+
+   
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ["İsim","Satış Sırası","Hayvan Numarası","Kesim Sırası","Tel" ]
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+   
+    font_style = xlwt.XFStyle()
+
+    rows = Cattle.objects.all().values_list("buyer","salesorder","cattleid","slaughterorder","phonenumber")
+    for row in rows:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, row[col_num], font_style)
+
+    wb.save(response)
+
+    return response
+   

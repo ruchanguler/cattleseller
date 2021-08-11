@@ -6,4 +6,5 @@ class Cattle(models.Model):
     salesorder = models.CharField(max_length=50,null=True,verbose_name="Satış Sırası",unique=True)
     cattleid = models.CharField(max_length=50,null=True,verbose_name="Hayvan Numarası",unique=True)
     slaughterorder = models.CharField(max_length=50,null=True,verbose_name="Kesim Sırası",unique=True)
+    phonenumber = models.IntegerField(null=True,verbose_name="Telefon Numarası",unique=True)
  

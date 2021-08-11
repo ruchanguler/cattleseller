@@ -6,4 +6,7 @@ urlpatterns = [
     path("send/",views.send),
     path("delete/<int:pk>/",views.delete,name="delete"),
     path("update/<int:pk>",views.update,name="update"),
+    path("excel/",views.excel,name="excel"),
+    
+
 ]

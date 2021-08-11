@@ -10,7 +10,8 @@ class AddCattle(forms.ModelForm):
             "buyer": forms.TextInput(attrs={"class":"form-control"}),
             "salesorder": forms.TextInput(attrs={"class":"form-control"}),
             "cattleid": forms.TextInput(attrs={"class":"form-control"}),
-            "slaughterorder": forms.TextInput(attrs={"class":"form-control"})
+            "slaughterorder": forms.TextInput(attrs={"class":"form-control"}),
+            "phonenumber": forms.TextInput(attrs={"class":"form-control"})
             
 
         }
