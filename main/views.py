@@ -57,7 +57,7 @@ def update(request,pk):
     return render(request,"update.html",{"form":form})
 def excel(request):
     response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="kurbansırası.xls"'
+    response['Content-Disposition'] = 'attachment; filename="sira.xls"'
 
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet('Users Data')
