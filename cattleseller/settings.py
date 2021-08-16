@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-tr9pd9eqp)hm_omxv+dvt2sde)7h+l4j4^=zt9m54wu3+9vyx)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.22","172.20.16.1","gbc123.herokuapp.com","127.0.0.1"]
+ALLOWED_HOSTS = ["192.168.1.22","172.20.16.1","gbc123.herokuapp.com","127.0.0.1","gulerbesi.pythonanywhere.com"]
 
 
 # Application definition
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django_tables2',
     'django_filters',
     'bootstrap3',
-    'main'
+    'main',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [

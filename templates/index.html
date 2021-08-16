@@ -1,11 +1,13 @@
 {% load render_table from django_tables2 %}
 {% load bootstrap3 %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Cattle Seller</title>
     <style>
@@ -16,28 +18,102 @@
         .table th{
             font-weight: bold;
             font-size: 30px;
+        
         }
+        .i{
+        border-style: none;
+        border-color:black;
+        background-color: rgb(61, 121, 21);
+        font-family: 'Segoe UI'; 
+        height: 30px;
+        text-align: center;
+        color:rgb(192, 179, 179);
+        
+       
+
+}
+      .i:focus{
+          outline: none;
+      }
+      ::placeholder{
+          color: rgb(192, 179, 179);
+      }
+    .a{
+        display: list-item;
+        margin-bottom: 6px;
+        height: 50px;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    .e{
+        display: block;
+    }
+    .excel{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        color: black;
+        border: 2px solid green !important;
+        transition: 700ms;
+
+        
+    }
+    .excel:hover{
+        color: white;
+        border: none;
+        background-color: green;
+        transition: 700ms;
+    }
+    .d{
+        background-color: rgb(196, 126, 21);
+        height: 40px;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 25px;
+        font-style: initial;
+    }
+    .send{
+        color: black;
+        border: 2px solid rgb(16, 123, 223) !important;
+        transition: 700ms;
+        margin-left: 10px;
+    }
+    .send:hover{
+        border: none;
+        color: white;
+        background-color:rgb(16, 123, 223) ;
+    }
     </style>
 </head>
-<body>
+<body style="background-color: rgb(195, 211, 211);">
+    <div class="col-xl-12 d">Güler Besi Çiftliği Yönetim Paneli</div>
     <div >
-        <form action="/send/" method="POST">
+        <form action="/send/" method="POST" >
         {% csrf_token %}
-        <table>
-            {{form.as_table}}
+        
+           {% render_field form.buyer class="i a" placeholder="İsim"%}
+           {% render_field form.salesorder class="i a" placeholder="Satış Sırası"%}
+           {% render_field form.cattleid class="i a" placeholder="Hayvan Numarası"%}
+           {% render_field form.slaughterorder class="i a" placeholder="Kesim Sırası"%}
+           {% render_field form.phonenumber class="i a" placeholder="Tel"%}
+           
 
-        </table>
-        <input type="submit" class="btn btn-primary ">
+
+
+           
+
+       
+        <input type="submit" class="btn  col-xl-1 send" style="margin: left 10px;">
         </form>
     </div>
-    <br>
-<a href="/excel/" class="btn btn-success">Excel</a>
+
+<a href="/excel/" class="btn  excel col-xl-1" >Excel</a>
 
     <br>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% if filter %}
     <form action="" method="get" class="form form-inline"  >
-        {% bootstrap_form filter.form layout='inline' %}
+        {% bootstrap_form filter.form layout='inline'  %}
+
         <button class="btn btn-info">Filtre</button>
     </form>
 {% endif %}

@@ -6,12 +6,12 @@ class AddCattle(forms.ModelForm):
     class Meta:
         model = Cattle
         fields = ("__all__")
-        widget = {
-            "buyer": forms.TextInput(attrs={"class":"form-control"}),
+        '''widget = {
+            "buyer": forms.TextInput(attrs={"placeholder":"buyer"}),
             "salesorder": forms.TextInput(attrs={"class":"form-control"}),
             "cattleid": forms.TextInput(attrs={"class":"form-control"}),
             "slaughterorder": forms.TextInput(attrs={"class":"form-control"}),
             "phonenumber": forms.TextInput(attrs={"class":"form-control"})
             
 
-        }
+        }'''
